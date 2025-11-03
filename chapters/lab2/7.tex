@@ -1,0 +1,47 @@
+\subsection{Full-wave Rectifier}
+The following circuit is known as a full-wave bridge diode rectifier. Given that the transformer has the ratio $N1/N2 = 10$ . Write the voltage difference equation $V_{AB}$ and $V_{CD}$.
+After that, perform a time-domain (transient) analysis to check the equation you’ve written.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{graphics/lab2_7.jpg}
+    \caption{Full-wave bridge rectifier}%
+    \label{fig:lab2_2_circuit}
+\end{figure}
+\subsubsection{Theory calculation}
+\textit{\textbf{Approximation:} Diodes have $V_f = 0.7V$}
+\vspace{-0.15cm}
+\[V_{AB} = V_{\sin} \times \dfrac{N1}{N2} = 220\cos(100\pi t) \times \dfrac{1}{10} = 22\cos(100\pi t)(V)\]
+During both half cycles, two diodes are conducting in series.
+\vspace{-0.15cm}
+\[V_{CD} = \min(0, V_{AB} - 2V_f) = \min(22\cos(100\pi t) - 1.4, 0)\]
+
+\subsubsection{Simulation}
+The sinusoidal waveform of the voltage difference $V_{AB}$ has the period
+\vspace{-0.15cm}
+\[T = \dfrac{1}{FREQ} = \dfrac{1}{50} = 0.02s = 20ms.\]
+
+If we want to perform the transient analysis in 10 periods of the waveform $V_{AB}$, the required time would be:
+\vspace{-0.15cm}
+\[T_{total} = 10 \times T = 10 \times 0.02s = 0.2s.\]
+
+If we want the sampling rate to be at least ten times higher than the frequency of the sinusoidal voltage difference $V_{AB}$, the time interval between two consecutive sampling time points should be:
+\vspace{-0.15cm}
+\[\Delta t = \dfrac{T}{10} = \dfrac{0.02s}{10} = 0.002s = 2ms.\]
+
+The following images show the simulation results for the full-wave rectifier circuit.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{graphics/lab2_7_sim.jpg}
+    \caption{Full-wave Rectifier Output Voltage}%
+    \label{fig:lab2_2_fw_output}
+\end{figure}
+
+From the simulation result, we can see that $V_{CD}$ or the red trace is always smaller than $V_{AB}$ or the green trace, due to voltage drops across the conducting diodes. Also, when $\left|V_{AB}\right| \le 1.2(V)$, $V_{CD}$ becomes zero because all diodes are off.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{graphics/lab2_7_off.jpg}
+    \caption{$V_{CD}$ drops to zero when $\left|V_{AB}\right| \le 1.2(V)$}%
+    \label{fig:lab2_2_fw_time_period}
+\end{figure}
+
+From the simulation result, we can verify that our theoretical calculations for $V_{AB}$ and $V_{CD}$ are nearly the same as the simulation results, except for some minor differences due to the idealized assumptions made in the theoretical calculations.

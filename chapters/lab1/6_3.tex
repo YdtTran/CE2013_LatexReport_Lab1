@@ -46,30 +46,30 @@ Finally, we calculate $R_{AF}$. Because $R1 + R_{BF}$, we have:
 By applying Ohm's law, we can find the voltage value between terminals A and F:
 \vspace{-0.15cm}
 \[
-    V_{AF} = V = I \cdot R_{AF}=18 \cdot 5=90(V)
+    V_{AF} = V = I \times R_{AF}=18 \times 5=90(V)
 \]
 We have voltages at nodes A, B, C, D, and E as follows:
 \vspace{-0.15cm}
 \[
     \begin{cases}
-        V_{A}-V_{F}=V_{AF}=90 \Rightarrow V_{A}=90+V_{F} = 90+0=90(V)                      \\
-        V_{BF} = I \cdot R_{BF}=18 \cdot 3=54(V) \Rightarrow V_{B}=V_{F}+V_{BF}=0+54=54(V) \\
+        V_{A}-V_{F}=V_{AF}=90 \Rightarrow V_{A}=90+V_{F} = 90+0=90(V)                        \\
+        V_{BF} = I \times R_{BF}=18 \times 3=54(V) \Rightarrow V_{B}=V_{F}+V_{BF}=0+54=54(V) \\
     \end{cases}
 \]
 By applying the voltage divider rule, we have:
 \vspace{-0.15cm}
 \[
-    V_{EF} = V_{BF} \cdot \dfrac{R7}{R_{BE}+R7}=54 \cdot \dfrac{9}{3+9}=40.5(V) \Rightarrow V_{E}=V_{F}+V_{EF}=0+40.5=40.5(V)                                                            \\
+    V_{EF} = V_{BF} \times \dfrac{R7}{R_{BE}+R7}=54 \times \dfrac{9}{3+9}=40.5(V) \Rightarrow V_{E}=V_{F}+V_{EF}=0+40.5=40.5(V)                                                            \\
 \]
 \[
     \begin{aligned}
-        V_{CE}      = & V_{BE} \cdot \dfrac{R_{CE}}{R_{CE}+R_{DE}}= (V_B-V_E)\cdot \dfrac{R_{CE}}{R_{CE}+R_{DE}}= (54-40.5) \cdot \dfrac{4}{4+2}=9(V) \\
+        V_{CE}      = & V_{BE} \times \dfrac{R_{CE}}{R_{CE}+R_{DE}}= (V_B-V_E)\times \dfrac{R_{CE}}{R_{CE}+R_{DE}}= (54-40.5) \times \dfrac{4}{4+2}=9(V) \\
         \Rightarrow   & V_{C}=V_{E}+V_{CE}=40.5+9=49.5(V)
     \end{aligned}
 \]
 \[
     \begin{aligned}
-        V_{DE}      = & V_{CE} \cdot \dfrac{R_{DE}}{R_{DE}+R_{3}}= (V_C-V_E) \cdot \dfrac{R_{DE}}{R_{DE}+R_{3}}= (49.5-40.5) \cdot \dfrac{2}{2+10}=1.5(V) \\
+        V_{DE}      = & V_{CE} \times \dfrac{R_{DE}}{R_{DE}+R_{3}}= (V_C-V_E) \times \dfrac{R_{DE}}{R_{DE}+R_{3}}= (49.5-40.5) \times \dfrac{2}{2+10}=1.5(V) \\
         \Rightarrow   & V_{D}=V_{E}+V_{DE}=40.5+1.5=42(V)
     \end{aligned}
 \]

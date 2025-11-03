@@ -6,7 +6,11 @@
 
 % Caption and subfigures
 \usepackage{subcaption}
-
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries\raggedright}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\raggedright} % <— tương tự
+  {\thesubsection}{1em}{}
 % Encodings
 \usepackage{gensymb,textcomp}
 
@@ -88,15 +92,25 @@
 
 \section{Report of lab 1}
 In lab 1, there are 10 problems to be solved. In each problem, we need to solve it first by hand and then verify the result by using simulation tools. In this report, we will use PSpice for TI to verify our results.
-\input{chapters/ssection/6_1.tex}
+\input{chapters/lab1/6_1.tex}
 \newpage
-\input{chapters/ssection/6_2.tex}
+\input{chapters/lab1/6_2.tex}
 \newpage
-\input{chapters/ssection/6_3.tex}
+\input{chapters/lab1/6_3.tex}
 \newpage
-\input{chapters/ssection/6_4.tex}
+\input{chapters/lab1/6_4.tex}
 \newpage
-\input{chapters/ssection/6_5.tex}
+\input{chapters/lab1/6_5.tex}
+
+\newpage
+\section{Report of lab 2}
+\input{chapters/lab2/6.tex}
+\newpage
+\input{chapters/lab2/7.tex}
+\newpage
+\input{chapters/lab2/8.tex}
+\newpage
+\input{chapters/lab2/10.tex}
 \bibliographystyle{plain}
 \bibliography{refs/example.bib}
 \nocite{*}

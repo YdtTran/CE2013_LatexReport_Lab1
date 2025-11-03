@@ -23,7 +23,37 @@ Given the network as shown below
                   \]
               }
     \item Use Table 2.1 in the lecture slide to select a standard 10\% tolerance resistor for $R$. $R$ in the circuit may be a single resistor or a combination of resistors as long as these resistors meet the standard values and are available in the market.
+              {
+                  From the standard resistor list with 10\% tolerance, we can select $15k\Omega$ resistor for $R$.
+              }
     \item Using the resistor selected in (b), determine the voltage across the $3.9\ \text{k}\Omega$ resistor.
+              {
+                  By applying Ohm's law for resistor the whole circuit, we have:
+                  \vspace{-0.15cm}
+                  \[
+                      I = \dfrac{V}{R_{eq}} = \dfrac{24}{3.9 + 15} = 1.270 (mA)
+                  \]
+                  Then by applying Ohm's law for $3.9k\Omega$ resistor, we have:
+                  \vspace{-0.15cm}
+                  \[
+                      V_1 = I \times 3.9 = 1.270 \times 3.9 = 4.95 (V)
+                  \]
+              }
     \item Calculate the percent error in the voltage $V_1$ if the standard resistor selected in (b) is used.
+              {
+                  The percent error in the voltage $V_1$ is calculated as follows:
+                  \vspace{-0.15cm}
+                  \[
+                      \text{Percent error} = \left| \dfrac{V_{1,calculated} - V_{1,selected}}{V_{1,calculated}} \right| \times 100\% = \left| \dfrac{5 - 4.95}{5} \right| \times 100\% = 1\%
+                  \]
+              }
     \item Determine the power rating for this standard component.
+              {
+                  The power rating for the $15k\Omega$ resistor is calculated as follows:
+                  \vspace{-0.15cm}
+                  \[
+                      P = I^2 \times R = (1.270 \times 10^{-3})^2 \times 15 \times 10^{3} = 0.024 (W)
+                  \]
+                  Therefore, a standard resistor with a power rating of at least $0.025W$ should be selected.
+              }
 \end{enumerate}

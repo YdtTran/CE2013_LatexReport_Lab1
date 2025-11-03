@@ -1,0 +1,64 @@
+\subsection{Exercise 8: AC/DC Power Circuit Application  With LM2596\_5P0\_TRANS}
+Figure \ref{fig:10_1} describes an incomplete Texas Instrument LM2596-5.0 Switching Power Supply circuit. It lacks a Zener diode voltage regulator and an inductor reducing the voltage variation. At first, let perform a time-domain (transient) simulation with this incomplete circuit and figure out the problem with the output voltage (the voltage marker at R1).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/lab2_10.jpg}
+    \caption{Incomplete switching power supply circuit}
+    \label{fig:10_1}
+\end{figure}
+
+\textbf{\textit{Simulation results:}}
+% create a subfigure with two images side by side
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/lab2_10_sim1.jpg}
+        \caption{Output voltage waveform}
+        \label{fig:10_2a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/lab2_10_zoom.jpg}
+        \caption{Output voltage zoomed-in waveform}
+        \label{fig:10_2b}
+    \end{subfigure}
+    \caption{Output voltage waveforms of the incomplete circuit}
+    \label{fig:10_2}
+\end{figure}
+
+\textbf{\textit{Comment and explanation:}} From the simulation results in Figure \ref{fig:10_2}, we can see that in the \ref{fig:10_2a}, the output voltage rise from $0V$ to about $5.75V$ and then drop to about $5.0V$ and become stable after that. However, if we zoom closer, the wave form is not a straight line. This phenomenon happens because we are not using Zener diode and inductor regulator.
+
+Next, add an inductor $33\micro H$ to the circuit as shown in Figure \ref{fig:10_1} then re-run the simulation and explain any improvements.
+% create a subfigure with two images side by side
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/lab2_10_sim2.jpg}
+        \caption{Output voltage waveform with inductor}
+        \label{fig:10_3a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/lab2_10_sim2zoom.jpg}
+        \caption{Output voltage zoomed-in waveform with inductor}
+        \label{fig:10_3b}
+    \end{subfigure}
+    \caption{Output voltage waveforms with inductor added}
+    \label{fig:10_3}
+\end{figure}
+
+\textbf{\textit{Simulation results:}} From the new simulation results in Figure \ref{fig:10_3}, we can see that the voltage just rise to approximately $5V$ and become stable, but not exceed $5V$ as before. Also, the zoomed-in waveform of voltage is softer and smoother than before. This is the effect of the inductor added to the circuit, which helps reduce voltage variation.
+
+Continue, add a $5V$ Zener diode to the circuit as shown in Figure 1.36, change the capacitor to $220\micro F$, add a current marker to the Zener diode, re-run the simulation and explain the role of the Zener diode in the circuit.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/lab2_10_sim3.jpg}
+    \caption{Complete switching power supply circuit with Zener diode and inductor}
+    \label{fig:10_4}
+\end{figure}
+
+\textbf{\textit{Simulation results:}} From the new simulation results in Figure \ref{fig:10_4}, the waveform is similar but it is more straight and stable. Also, the Zener help to protect the circuit from spike and over voltage.
