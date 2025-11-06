@@ -70,10 +70,12 @@
   paper=a4paper,
   left=3cm,
   right=2cm,
-  vmargin=2cm,
+  vmargin=1cm,
   includeheadfoot=true,
-  headheight=35pt
+  headheight=30pt
 }
+
+
 
 \onehalfspacing
 \raggedbottom
@@ -117,7 +119,7 @@
         \put(0,-8pt){\includegraphics[width=20pt]{graphics/hcmut.png}}
       \end{picture}
       \begin{tabular}{l}
-        \ttfamily\@uniname \\
+        \ttfamily\@uniname  \\
         \ttfamily\@deptname \\
       \end{tabular}
     \end{tabular}
@@ -126,7 +128,7 @@
     \bfseries
     \begin{tabular}{rl}
       \begin{tabular}{r}
-        \ttfamily\@uniname \\
+        \ttfamily\@uniname  \\
         \ttfamily\@deptname \\
       \end{tabular}
       \begin{picture}(25pt,15pt)
@@ -139,7 +141,7 @@
     \bfseries
     \begin{tabular}{rl}
       \begin{tabular}{r}
-        \ttfamily\@uniname \\
+        \ttfamily\@uniname  \\
         \ttfamily\@deptname \\
       \end{tabular}
       \begin{picture}(25pt,15pt)
