@@ -1,0 +1,46 @@
+\subsection{Exercise 1}
+Given the following circuit. Calculate the value of the voltage $v_0$ and the current $i$. Then, simulate the circuit to check it out.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{graphics/ex1.jpg}
+    \caption{Find the voltage and the current in the given circuit using KVL}%
+    \label{fig:6_1_circuit}
+\end{figure}
+
+\subsubsection{Calculation}
+\textbf{\textit{Notes:}}
+\textit{Explanations, formulas, and equations are expected rather than only results.}
+
+According to the KVL (Kirchhoff's Voltage Law), we have the equations of the loops as follows:
+\begin{equation}
+    12 - 0 = 4i + 2v_0 - 4 + 6i
+\end{equation}
+According to the Ohm's Law, we have:
+\begin{equation}
+    i = \dfrac{-v_0}{6}
+\end{equation}
+From (1) and (2), we have:
+\[
+    12 = 4\left(\dfrac{-v_0}{6}\right) + 2v_0 - 4 + 6\left(\dfrac{-v_0}{6}\right) \Rightarrow v_0 = 48(V)
+\]
+By substituting $v_0=48$ into (2), we have: $i=\dfrac{-48}{6} = -8(A)$
+
+\subsubsection{simulation}
+After redrawing the circuit in PSpice for TI, and run then simulation, we have the results as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{graphics/ex1_sim.jpg}
+    \caption{Simulation result of the circuit in Figure \ref{fig:6_1_circuit}}%
+    \label{fig:6_1_simulation}
+\end{figure}
+
+Let $A$ and $B$ be the nodes across the voltage source $v_0$. From the simulation result in Figure \ref{fig:6_1_simulation}, we have:
+\[
+    \begin{cases}
+        v_0 = V_A - V_B = 48(V) \\
+        i = I = -8(A)
+    \end{cases}
+\]
+Even though the current $i$ has a negative value, it is still correct because the direction of the current in the simulation is opposite to the assumed direction in the calculation.
+
+\textbf{Conclusion:} The result of PSpice simulation matches the result of the calculation. Therefore, the calculation is correct.

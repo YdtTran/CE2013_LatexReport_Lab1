@@ -1,0 +1,505 @@
+\subsection{Exercise 6}
+Given the following circuit. Apply the knowledge you've learned to transform it into another form in which you can find total equivalent resistance $R_{ab}$ more easily. Next, find the value of the current $i$ through the circuit and perform a simulation to check it out.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Images/ex6_org.png}
+    \caption{Transform the circuit, then find the equivalent resistance $R_{ab}$ and the current $i$ through the circuit.}%
+    \label{fig:6_6_circuit}
+\end{figure}
+
+\textbf{Identifying the $\Delta$ network}: In the circuit showing in figure \ref{fig:6_6_circuit}, three resistors \(24\ \Omega,\ 20\ \Omega,\ 10\ \Omega\) form a delta connection (let the vertices be \(T\) (top), \(L\) (left), \(R\) (right)):
+\vspace{-10pt}
+\[
+    R_{TL}=24\ \Omega,\quad R_{LR}=20\ \Omega,\quad R_{RT}=10\ \Omega.
+\]
+
+\textbf{Delta-to-Wye ($\Delta\to Y$) conversion formula:}
+
+For a delta network with sides \(R_{12},R_{23},R_{31}\), the equivalent Y resistances connected to the vertices (denoted \(R_1,R_2,R_3\)) are:
+\vspace{-10pt}
+\[
+    R_1=\dfrac{R_{12}R_{31}}{R_{12}+R_{23}+R_{31}},\quad
+    R_2=\dfrac{R_{12}R_{23}}{R_{12}+R_{23}+R_{31}},\quad
+    R_3=\dfrac{R_{23}R_{31}}{R_{12}+R_{23}+R_{31}}.
+\]
+
+By substituting \(R_{12}=24,\ R_{23}=20,\ R_{31}=10\), in the formulas above, we have the resistances of the equivalent $Y$ network:
+\[
+    S=24+20+10=54\ \Omega.
+\]
+\[
+    R_T \;=\; R_1=\dfrac{24\cdot 10}{54}=\dfrac{240}{54}=\dfrac{40}{9}\approx 4.4444\ \Omega,
+\]
+\[
+    R_L \;=\; R_2=\dfrac{24\cdot 20}{54}=\dfrac{480}{54}=\dfrac{80}{9}\approx 8.8889\ \Omega,
+\]
+\[
+    R_R \;=\; R_3=\dfrac{20\cdot 10}{54}=\dfrac{200}{54}=\dfrac{100}{27}\approx 3.7037\ \Omega.
+\]
+
+\textbf{Equivalent circuit after $\Delta$-$Y$ conversion:}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.7\linewidth]{Images/transformed.jpg}
+    \end{center}
+    \caption{Circuit after $\Delta-Y$ transformation}
+    \label{fig:6_6_transformed}
+\end{figure}
+
+\textbf{Calculating the equivalent resistance:}
+Consider the path from $a$ to the central node $N$:
+\[
+    R_{aN}=13\ \Omega + R_T = 13 + \dfrac{40}{9} = \dfrac{157}{9}\ \Omega \approx 17.4444\ \Omega.
+\]
+From node $N$ to $b$, there are two parallel branches:
+\[
+    \begin{aligned}
+        \text{Branch 1: } & N\to L\to b:\ R_{1}=R_L+30=\dfrac{80}{9}+30=\dfrac{350}{9}\ \Omega\approx38.8889\ \Omega     \\
+        \text{Branch 2: } & N\to R\to b:\ R_{2}=R_R+50=\dfrac{100}{27}+50=\dfrac{1450}{27}\ \Omega\approx53.7037\ \Omega
+    \end{aligned}
+\]
+Their parallel equivalent is:
+\[
+    R_{Nb} = \dfrac{R_1 R_2}{R_1+R_2}.
+\]
+Substitute:
+\[
+    R_1=\dfrac{350}{9},\quad R_2=\dfrac{1450}{27}.
+\]
+Compute:
+\[
+    R_{Nb}=\dfrac{\dfrac{350}{9}\cdot\dfrac{1450}{27}}{\dfrac{350}{9}+\dfrac{1450}{27}}
+    = \dfrac{\dfrac{507500}{243}}{\dfrac{1050+1450}{27}} = \dfrac{\dfrac{507500}{243}}{\dfrac{2500}{27}}
+    = \dfrac{203}{9}\approx 22.5556\ \Omega.
+\]
+Finally,
+\[
+    R_{ab}=R_{aN}+R_{Nb}=\dfrac{157}{9}+\dfrac{203}{9}=40\ \Omega.
+\]
+By applying Ohm's law, we can find the current value through the circuit when a voltage source of $100\,$V is connected between terminals $a$ and $b$:
+\[
+    i=\dfrac{100\ \text{V}}{R_{ab}}=\dfrac{100}{40}=2.5\ \text{A}.
+\]
+\textbf{Summary of results}:
+\begin{itemize}
+    \item After $\Delta\to Y$ conversion: $R_T=\dfrac{40}{9}\ \Omega\ (\approx4.4444\ \Omega)$, $R_L=\dfrac{80}{9}\ \Omega\ (\approx8.8889\ \Omega)$, $R_R=\dfrac{100}{27}\ \Omega\ (\approx3.7037\ \Omega)$.
+    \item Equivalent resistance between terminals $a$ and $b$: \(\boxed{R_{ab}=40\ \Omega}\).
+    \item Circuit current with \(100\ \text{V}\) source: \(\boxed{i=2.5\ \text{A}}\).
+\end{itemize}
+
+% two subfigures side by side
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/ex1.6.jpg}
+        \caption{Original circuit simulation}
+        \label{fig:6_6_simulation_original}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/ex1.6b.jpg}
+        \caption{Transformed circuit simulation}
+        \label{fig:6_6_simulation_transformed}
+    \end{subfigure}
+    \caption{PSpice simulation results for Exercise 6}
+    \label{fig:6_6_simulation}
+\end{figure}
+
+% \begin{figure}[H]
+%     \begin{center}
+%         \includegraphics[width=15cm]{Images/ex1.6.jpg}
+%     \end{center}
+%     \caption{PSpice simulation result of the original circuit}
+%     \label{fig:1}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \begin{center}
+%         \includegraphics[width=15cm]{Images/ex1.6b.jpg}
+%     \end{center}
+%     \caption{PSpice simulation result of the transformed circuit}
+%     \label{fig:1}
+% \end{figure}
+
+\newpage
+\subsection{Exercise 7}
+Given the following circuit. Apply the knowledge you've learned to transform it into another form in which you can find total equivalent resistance more easily. Next, find the value of the current $I_S$ through the circuit and perform a simulation to check it out.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\linewidth]{Images/ex7_org.jpg}
+    \caption{Transform the circuit, then find the equivalent resistance and the current $I_S$ through the circuit.}%
+    \label{fig:6_7_circuit}
+\end{figure}
+
+\textbf{Identifying the $\Delta$ network:} In the circuit showing in figure \ref{fig:6_7_circuit}, three resistors \(\,12\ k\Omega,\;18\ k\Omega,\;6\ k\Omega\) form a delta connection (vertices \(T\), \(L\), \(R\)):
+\[
+    R_{TL}=12\ k\Omega,\quad R_{LR}=6\ k\Omega,\quad R_{RT}=18\ k\Omega.
+\]
+
+\textbf{Delta-to-Wye $\Delta\to Y$ conversion formula:}
+\[
+    R_1=\dfrac{R_{12}R_{31}}{R_{12}+R_{23}+R_{31}},\quad
+    R_2=\dfrac{R_{12}R_{23}}{R_{12}+R_{23}+R_{31}},\quad
+    R_3=\dfrac{R_{23}R_{31}}{R_{12}+R_{23}+R_{31}}.
+\]
+
+By substituting \(R_{12}=12,\ R_{23}=6,\ R_{31}=18\), in the formulas above, we have the resistances of the equivalent $Y$ network:
+$$S=12+6+18=36\ k\Omega.$$
+\[
+    \begin{aligned}
+        R_T = & R_1 = & \dfrac{12\cdot18}{36} = & 6\ k\Omega, \\
+        R_L = & R_2 = & \dfrac{12\cdot6}{36} =  & 2\ k\Omega, \\
+        R_R = & R_3 = & \dfrac{6\cdot18}{36} =  & 3\ k\Omega.
+    \end{aligned}
+\]
+
+\textbf{Equivalent circuit after $\Delta \to Y$ transformation}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{Images/ex1.7.transformed.jpg}
+    \end{center}
+    \caption{Circuit after $\Delta-Y$ transformation}
+    \label{fig:6_7_transformed}
+\end{figure}
+\textbf{Calculating the equivalent resistance}
+
+From $a$ to the central node $N$, we have $R_{aN}$:
+\[
+    R_{aN}=R_T = 6\ k\Omega.
+\]
+From $N$ to $b$ there are two parallel branches:
+\[
+    \begin{aligned}
+        \text{Branch 1: } & N\to L\to b: R_1 = R_L + 4 = 6\ k\Omega,  \\
+        \text{Branch 2: } & N\to R\to b: R_2 = R_R + 9 = 12\ k\Omega.
+    \end{aligned}
+\]
+Parallel combination:
+\[
+    R_{Nb} = \dfrac{R_1 R_2}{R_1+R_2} = \dfrac{6\cdot12}{6+12} = 4\ k\Omega.
+\]
+Therefore,
+\[
+    R_{ab}=R_{aN}+R_{Nb}=6+4=10\ k\Omega.
+\]
+By applying Ohm's law, we can find the source current value when a voltage source of \(12\ \text{V}\) is connected between terminals \(a\) and \(b\):
+\[
+    I_S=\dfrac{12\ \text{V}}{R_{ab}}=\dfrac{12}{10}=1.2\ \text{mA}.
+\]
+
+\textbf{Summary of results}
+\begin{itemize}
+    \item After $\Delta\to Y$: $R_T=6\ k\Omega$, $R_L=2\ k\Omega$, $R_R=3\ k\Omega$.
+    \item Equivalent resistance seen from $a,b$: \(\boxed{R_{ab}=10\ k\Omega}\).
+    \item Source current for \(12\ \text{V}\): \(\boxed{I_S=1.2\ \text{mA}}\).
+\end{itemize}
+
+% two subfigures side by side
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/ex1.7.jpg}
+        \caption{Original circuit simulation}
+        \label{fig:6_7_simulation_original}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/ex1.7b.jpg}
+        \caption{Transformed circuit simulation}
+        \label{fig:6_7_simulation_transformed}
+    \end{subfigure}
+    \caption{PSpice simulation results for Exercise 7}
+    \label{fig:6_7_simulation}
+\end{figure}
+
+% \begin{figure}[H]
+%     \begin{center}
+%         \includegraphics[width=15cm]{Images/ex1.7.jpg}
+%     \end{center}
+%     \caption{PSpice simulation result of the original circuit}
+%     \label{fig:1}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \begin{center}
+%         \includegraphics[width=15cm]{Images/ex1.7b.jpg}
+%     \end{center}
+%     \caption{PSpice simulation result of the transformed circuit}
+%     \label{fig:1}
+% \end{figure}
+
+\newpage
+\subsection{Exercise 8}
+Given the following circuit with \(p_2\), \(p_3\), and \(p_4\) are absorbing powers of unknown electrical elements. First, use the knowledge you've learned to identify whether they are active or passive elements (supplying or absorbing power). To an element absorbing power, use a pure resistor with a proper value as a representative. To a power element, use an ideal DC voltage source with the corresponding value as a representative. Next, redraw the circuit and calculate the power that each element absorbs. Note that here we use the passive sign convention. Then, perform a simulation with the elements determined by the previous step
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Images/ex8_org.jpg}
+    \caption{Determine the unknown elements and calculate the absorbing power of each.}%
+    \label{fig:6_8_circuit}
+\end{figure}
+
+\subsubsection{Identify the unknown elements}
+
+\begin{enumerate}
+    \item \textbf{Element \(\mathbf{p_2}\) (10 V element):} \\
+          The current \(10\ \text{A}\) is shown entering the positive terminal. Using the passive sign convention,
+          \[
+              p_2 = (+10\ \text{V})(+10\ \text{A}) = \mathbf{100\ \text{W}}.
+          \]
+          Since \(p_2>0\), this element \textbf{absorbs} power (passive). Its equivalent resistance is
+          \[
+              R_2 = \dfrac{V}{I} = \dfrac{10\ \text{V}}{10\ \text{A}} = \mathbf{1\ \Omega}.
+          \]
+
+    \item \textbf{Element \(\mathbf{p_3}\) (20 V element):} \\
+          The current \(14\ \text{A}\) is shown entering the positive terminal.
+          \[
+              p_3 = (+20\ \text{V})(+14\ \text{A}) = \mathbf{280\ \text{W}}.
+          \]
+          Since \(p_3>0\), this element \textbf{absorbs} power (passive). Its equivalent resistance is
+          \[
+              R_3 = \dfrac{20\ \text{V}}{14\ \text{A}} \approx \mathbf{1.4286\ \Omega}.
+          \]
+
+    \item \textbf{Element \(\mathbf{p_4}\) (8 V element):} \\
+          The current \(4\ \text{A}\) is shown leaving the positive terminal (i.e., current exits the positive terminal). Using passive sign convention,
+          \[
+              p_4 = - (8\ \text{V})(4\ \text{A}) = \mathbf{-32\ \text{W}}.
+          \]
+          Since \(p_4<0\), this element \textbf{supplies} power (active). It can be represented as an ideal voltage source \(V=8\ \text{V}\).
+\end{enumerate}
+\subsubsection{Redraw the circuit and simulation result}
+A redrawn circuit (with passive elements replaced by their resistances where applicable) is shown below:
+\noindent Summary (numerical):
+\begin{itemize}
+    \item \(p_2 = +100\ \text{W}\) (absorbing), \(R_2 = 1\ \Omega\).
+    \item \(p_3 = +280\ \text{W}\) (absorbing), \(R_3 \approx 1.4286\ \Omega\).
+    \item \(p_4 = -32\ \text{W}\) (supplying), represented as \(8\ \text{V}\) ideal source.
+\end{itemize}
+
+% two subfigures side by side
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/ex1.8.jpg}
+        \caption{Redrawn circuit with determined elements}
+        \label{fig:6_8_redrawn}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Images/ex1.8b.jpg}
+        \caption{PSpice simulation of the redrawn circuit}
+        \label{fig:6_8_simulation}
+    \end{subfigure}
+    \caption{Redrawn circuit and its PSpice simulation for Exercise 8}
+    \label{fig:6_8}
+\end{figure}
+
+% \begin{figure}[H]
+%     \begin{center}
+%         \includegraphics[width=15cm]{Images/ex1.8b.jpg}
+%     \end{center}
+%     \caption{PSpice simulation result for Exercise 8}
+%     \label{fig:ex8sim}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \begin{center}
+%         \includegraphics[width=10cm]{Images/ex1.8.jpg}
+%     \end{center}
+%     \caption{Redrawn circuit for Exercise 8}
+%     \label{fig:ex8}
+% \end{figure}
+
+
+\newpage
+\subsection{Exercise 9}
+Given the following circuit. Find the voltage \(v\) and the current \(i_x\). According to the result, determine the elements whose absorbing power respectively \(p_1\) and \(p_2\) are reactive or passive (calculations are required). Note that here we use the passive sign convention. If an element consumes power, use a pure resistor with an appropriate value as a representative. If it is a power supply element, use a corresponding ideal DC voltage source to represent it. Perform a simulation to check how the circuit works.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Images/ex9_org.jpg}
+    \caption{Find the unknown elements and variables, then check them out by simulation.}%
+    \label{fig:6_9_circuit}
+\end{figure}
+
+\subsubsection{Finding node voltages}
+\begin{itemize}
+    \item Node \(D\) is the reference: \(V_D = 0\).
+    \item Left source sets \(V_A = 10\ \text{V}\).
+    \item Middle source sets \(V_B = 4\ \text{V}\) (positive at the top).
+\end{itemize}
+The voltage \(v\) across \(A\) and \(B\) is: $v = V_{AB} = V_A - V_B = 10 - 4 = 6\ \text{V}$.
+
+\noindent By applying Ohm's law for the \(12\ \Omega\) resistor between \(A\) and \(B\), we find the current \(I_{AB}\) (from \(A\) to \(B\)):
+\[
+    I_{AB} = \dfrac{V_A - V_B}{12\ \Omega} = \dfrac{6}{12} = 0.5\ \text{A}.
+\]
+% \noindent Finding $V_C$ using the $16V$ source between nodes \(B\) and \(C\):
+As we have \(V_B = 4\ \text{V}\), and $V_{BC}=16$, we can find \(V_C\):
+\[
+    V_C = V_B - 16 = 4 - 16 = -12\ \text{V}.
+\]
+Then, we have $V_{CD}$ as follows:
+\[
+    V_{CD} = V_C - V_D = -12 - 0 = -12\ \text{V}.
+\]
+
+\subsubsection{Finding the remaining unknown values}
+
+\noindent The right dependent source relates \(V_C - V_D = 3 i_x\). Substituting \(V_C - V_D = -12\),
+\[
+    -12 = 3 i_x \quad\Rightarrow\quad i_x = -4\ \text{A}.
+\]
+
+The negative sign indicates the actual current is opposite to the reference arrow; i.e., \(4 \text{A}\) flows from \(D\) to \(B\).
+
+By applying KCL at node \(B\) we could find the current from \(B\) to \(C\). We have:
+
+Currents (signs: positive = from the listed node \(\to\) other node):
+\[
+    \begin{aligned}
+        I_{BA} = & \dfrac{V_B - V_A}{12} = \dfrac{4-10}{12} = -0.5\ \text{A},                 \\
+        i_x =    & -4\ \text{A} \quad(\text{meaning }4\ \text{A flows into }B\text{ from }D), \\
+        I_{BC} = & ?\ (\text{from }B\to C).
+    \end{aligned}
+\]
+
+KCL at \(B\): \(I_{BA} + i_x + I_{BC} = 0\). Thus,
+\[
+    (-0.5) + (-4) + I_{BC} = 0 \quad\Rightarrow\quad I_{BC} = 4.5\ \text{A}.
+\]
+
+\subsubsection{Power calculations (passive sign convention)}
+\begin{itemize}
+    \item For the \(4\ \text{V}\) element (top positive): \(p_1 = V\cdot i_{enter} = 4\ \text{V}\times i_x = 4\times(-4) = \mathbf{-16\ \text{W}}\). The negative sign means this element delivers \(16\ \text{W}\) to the circuit (acts as a source).
+    \item For the \(16\ \text{V}\) source between B and C: \(p_2 = V_{BC}\cdot I_{BC} = 16\ \text{V}\times 4.5\ \text{A} = \mathbf{72\ \text{W}}\) (absorbing).
+    \item Equivalent resistance \(R_2\) seen by the \(16\ \text{V}\) branch:
+          \[
+              R_2 = \dfrac{V_{BC}}{I_{BC}}=\dfrac{16}{4.5}\approx \mathbf{3.5556\ \Omega}.
+          \]
+\end{itemize}
+
+\subsubsection{Summary and simulation results}
+\begin{itemize}
+    \item \(v = 6\ \text{V}\).
+    \item \(i_x = -4\ \text{A}\) (actual current \(4\ \text{A}\) from \(D\to B\)).
+    \item \(I_{AB} = 0.5\ \text{A}\) (from \(A\to B\)).
+    \item \(I_{BC} = 4.5\ \text{A}\) (from \(B\to C\)).
+    \item \(U_{CD} = -12\ \text{V}\).
+    \item \(p_1 = -16\ \text{W}\) (element supplies \(16\ \text{W}\)).
+    \item \(p_2 = 72\ \text{W}\) (element absorbs \(72\ \text{W}\)).
+    \item \(R_2 \approx 3.5556\ \Omega\).
+\end{itemize}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=15cm]{Images/ex1_9.jpg}
+    \end{center}
+    \caption{PSpice simulation result for Exercise 9}
+    \label{fig:ex9sim}
+\end{figure}
+
+\newpage
+\subsection{Exercise 10}
+Given the following circuit. Find the voltage \(V\). You can do this in any way but remember to explain it in detail. Then simulate the circuit to check the result.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Images/ex10_org.jpg}
+    \caption{Find the voltage $V$}%
+    \label{fig:6_10_circuit}
+\end{figure}
+
+We write KCL (currents leaving each node) for nodes \(B\), \(C\), and \(D\). All resistances and sources are as given; node \(E\) is ground (\(V_E=0\)), and \(V_A=100\ \text{V}\).
+
+\subsubsection{Solution}
+\noindent
+By applying KCL at node B:
+\[
+    \dfrac{V_B - V_A}{R_1} + \dfrac{V_B - V_E}{R_2} + \dfrac{V_B - V_C}{R_6} + \dfrac{V_B - V_D}{R_7} = 0.
+\]
+Substitute numeric values:
+\[
+    \dfrac{V_B - 100}{16} + \dfrac{V_B - 0}{35} + \dfrac{V_B - V_C}{15} + \dfrac{V_B - V_D}{30} = 0.
+\]
+Multiply by 1680 (LCM of 16,35,15,30) and simplify:
+\[
+    321V_B - 112V_C - 56V_D = 10500. \tag{1}
+\]
+By applying KCL at node C:
+\[
+    \dfrac{V_C - V_B}{R_6} + \dfrac{V_C - V_E}{R_3} + \dfrac{V_C - V_D}{R_5} = 0.
+\]
+Substitute numbers:
+\[
+    \dfrac{V_C - V_B}{15} + \dfrac{V_C - 0}{12} + \dfrac{V_C - V_D}{10} = 0.
+\]
+Multiply by 60 and simplify:
+\[
+    -4V_B + 15V_C - 6V_D = 0. \tag{2}
+\]
+By applying KCL at node D:
+\[
+    \dfrac{V_D - V_B}{R_7} + \dfrac{V_D - V_C}{R_5} + \dfrac{V_D - V_E}{R_4} = 0.
+\]
+Substitute numbers:
+\[
+    \dfrac{V_D - V_B}{30} + \dfrac{V_D - V_C}{10} + \dfrac{V_D - 0}{20} = 0.
+\]
+Multiply by 60 and simplify:
+\[
+    -2V_B - 6V_C + 11V_D = 0. \tag{3}
+\]
+We have the system:
+\[
+    \begin{cases}
+        321V_B - 112V_C - 56V_D = 10500, \\
+        -4V_B + 15V_C - 6V_D = 0,        \\
+        -2V_B - 6V_C + 11V_D = 0.
+    \end{cases}
+\]
+From (3), we have:
+\[
+    11V_D = 2V_B + 6V_C \quad\Rightarrow\quad V_D = \dfrac{2V_B + 6V_C}{11}.
+\]
+Substitute into (2):
+\[
+    -4V_B + 15V_C - 6\left(\dfrac{2V_B + 6V_C}{11}\right) = 0.
+\]
+Multiply by 11 and simplify:
+\[
+    -56V_B + 129V_C = 0 \quad\Rightarrow\quad V_C = \dfrac{56}{129}V_B.
+\]
+Compute \(V_D\):
+\[
+    V_D = \dfrac{2V_B + 6\left(\dfrac{56}{129}V_B\right)}{11}
+    = \dfrac{54}{129}V_B.
+\]
+Substitute \(V_C\) and \(V_D\) into (1) and solve for \(V_B\):
+\[
+    321V_B - 112\left(\dfrac{56}{129}V_B\right) - 56\left(\dfrac{54}{129}V_B\right) = 10500.
+\]
+After arithmetic,
+\[
+    32113\,V_B = 1354500 \quad\Rightarrow\quad V_B = \dfrac{1354500}{32113} \approx \mathbf{42.18\ \text{V}}.
+\]
+
+\subsubsection{Conclusion}
+The required node voltage is
+\[
+    \boxed{V = V_B \approx 42.18\ \text{V}}.
+\]
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=15cm]{Images/ex1.10.jpg}
+    \end{center}
+    \caption{PSpice simulation result for Exercise 10}
+    \label{fig:ex10sim}
+\end{figure}
+

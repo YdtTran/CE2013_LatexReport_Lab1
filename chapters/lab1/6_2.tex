@@ -1,0 +1,65 @@
+\subsection{Exercise 2}
+Given the following circuit, students rearrange the circuit to clarify its serial and/or parallel topology. Then, apply the knowledge you've learned to find the equivalent resistance value between two circuit terminals A and F. Finally, perform the simulation to check if the current through the whole circuit is correctly calculated.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{graphics/lab1_ex2.jpg}
+    \caption{Find the equivalent resistance between terminals A and F}%
+    \label{fig:6_2_circuit}
+\end{figure}
+\subsubsection{Rearrange the circuit}
+By extending wire between nodes B and E, we have the following rearranged circuit:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{graphics/lab1_ex2_rear.jpg}
+    \caption{Rearranged circuit}%
+    \label{fig:6_2_rearranged_circuit}
+\end{figure}
+\subsubsection{Calculation}
+\textbf{\textit{Convention:}}
+\textit{The equivalent resistance between the two terminals A and B of a circuit segment containing only $R1$, $R2$, $R3$, and $R4$ may be named $R_{AB\_1234}$.}
+
+Belong to the rearranged circuit, we have: $R6 \parallel (R3+R4+R5)$. Thus, we calculate the equivalent resistance $R_{CD\_3456}$ as follows:
+\vspace{-8pt}
+\[
+    R_{CD\_3456}=\dfrac{1}{\dfrac{1}{R_6} + \dfrac{1}{R_3+R_4+R_5}}=\dfrac{1}{\dfrac{1}{4}+\dfrac{1}{4+5+3}}=3(\Omega)
+\]
+
+Next, looking at the circuit between $B$ and $E$, we have: $R7 \parallel (R2 + R_{CD\_3456})$. Thus, we calculate the equivalent resistance $R_{BE}$ as follows:
+\vspace{-8pt}
+\[
+    R_{BE}=\dfrac{1}{\dfrac{1}{R_7} + \dfrac{1}{R_2 + R_{CD\_3456}}}=\dfrac{1}{\dfrac{1}{6} + \dfrac{1}{3 + 3}}=\dfrac{1}{\dfrac{1}{2} + \dfrac{1}{6}}=3(\Omega)
+\]
+
+Now move to $A$ and $F$, we have: $R1 + R_{BE} + R8$. Thus, we calculate the equivalent resistance $R_{AF}$ as follows:
+\[
+    R_{AF}=R_1 + R_{BE} + R_8=1 + 3 + 2=6(\Omega)
+\]
+
+By applying Ohm's law, we can find the current $I_{AB}$ through the whole circuit:
+\[
+    I_{AB} = I =\dfrac{U}{R_{AF}}=\dfrac{12}{6}=2(A)
+\]
+
+\subsubsection{Simulation}
+To verify the calculation above, we did perform the simulation twice: first, for original circuit; second, for rearranged circuit. The results are as follows:
+% display to image here on the same line with two caption
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/lab1_ex2_sim.jpg}
+        \caption{Simulation for original circuit}%
+        \label{fig:6_2_sim1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/lab1_ex2_sim_rear.jpg}
+        \caption{Simulation for rearranged circuit}%
+        \label{fig:6_2_sim2}
+    \end{subfigure}
+    \caption{Simulation results}%
+    \label{fig:6_2_simulation_results}
+\end{figure}
+
+As shown, the value of current $I$ and voltage $V$ between corresponding terminals in both simulations are the same. Thus, our calculation and rearrangement are correct.

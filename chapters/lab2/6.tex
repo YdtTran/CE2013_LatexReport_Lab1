@@ -1,0 +1,55 @@
+\subsection{Half-wave Rectifier}
+In this exercise, an alternating source is used to generate a half-wave rectifier output using a diode. The schematic of the simulation is given below.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{graphics/lab2_6.jpg}
+    \caption{Half-wave Rectifier with Voltage Sin Source}%
+    \label{fig:lab2_1_circuit}
+\end{figure}
+
+\subsubsection{Theory calculations}
+\textbf{\textit{Approximation}}: Diodes have $V_f = 0.78V$
+
+% itemize them with bullet points
+\begin{itemize}
+    \item Minimum Value of $V_{R1} = 0$ (Because during negative half cycle, diode is off).
+    \item Maximum Value of $V_{R1} = V_{\sin{Max}} - V_f = 22 - 0.78 = 21.22V$
+    \item Duration (millisecond) for a cycle of $V_{R1}$ = $T_{cycle} = \dfrac{1}{FREQ} = \dfrac{1}{50} = 0.02s = 20ms$
+\end{itemize}
+
+\subsubsection{PSpice simulation}
+% itemize them with bullet points
+
+\begin{itemize}
+    \item Minimum Value of $V_{R1} \approx -6.399018344997e-28V \approx 0V$.
+    \item Maximum Value of $V_{R1} \approx 2.125892105879e+01V \approx 21.26V$.
+    \item Duration (millisecond) for a cycle of $V_{R1} = 20ms$.
+\end{itemize}
+
+The following images show the simulation results for the half-wave rectifier circuit and highest Voltage value.
+% make two images side by side
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/lab2_6_wf.jpg}
+        \caption{Half-wave Rectifier Output Voltage}
+        \label{fig:lab2_1_hr_output}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{graphics/lab2_6_highest.jpg}
+        \caption{Maximum Voltage Measurement}
+        \label{fig:lab2_1_hr_max_voltage}
+    \end{subfigure}
+    \caption{Half-wave Rectifier Simulation Results}
+    \label{fig:lab2_1_hr_results}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{graphics/lab2_6_trackingline.jpg}
+    \caption{Min and max values tracking on the wave-form}%
+    \label{fig:lab2_1_hr_time_period}
+\end{figure}

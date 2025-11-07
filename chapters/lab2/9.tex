@@ -1,0 +1,71 @@
+\subsection{AC/DC Power Circuit Application}
+In this exercise, we are building step by step an AC to DC voltage source transformation circuit. Students perform a time-domain simulation and write out comments and explanations for each step.
+\begin{itemize}
+    \item \textbf{Step 1:} The rectified voltage without any filtering or being regulated.\\
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.7\textwidth]{graphics/lab2_9_org.jpg}
+              \caption{The rectified voltage without any filtering or being regulated}
+              \label{fig:lab2_9}
+          \end{figure}
+          \textbf{Comments:} The simulation result is similar to the exercise 7 because the two circuit are thee same.
+    \item \textbf{Step 2:} Rectified voltage regulated with a $10\micro$F capacitor
+          % image goes here
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.7\textwidth]{graphics/lab2_9_step2.jpg}
+              \caption{The rectified voltage regulated with a $10\micro$F capacitor}
+              \label{fig:lab2_9_step2}
+          \end{figure}
+          \textbf{Simulation result:}
+          %% Create 2 subfigure, waveform on lhs, max val on rhs
+          \begin{figure}[H]
+              \centering
+              \begin{subfigure}{0.45\textwidth}
+                  \includegraphics[width=\textwidth]{graphics/lab2_9_sim.jpg}
+                  \caption{Waveform of the output voltage}
+                  \label{fig:lab2_9_waveform}
+              \end{subfigure}
+              \hfill
+              \begin{subfigure}{0.45\textwidth}
+                  \includegraphics[width=\textwidth]{graphics/lab2_9_maxval.jpg}
+                  \caption{Max value of the output voltage}
+                  \label{fig:lab2_9_maxval}
+              \end{subfigure}
+              \caption{Simulation results of Step 1}
+              \label{fig:lab2_9_simulation}
+          \end{figure}
+          \textbf{Comments:} The output voltage waveform is better when compared to step 1. However, there are still ripples on the output voltage. This is the role of the capacitor, which helps to smooth the output voltage. The maximum voltage between differential markers is around $21.6$V, which is close to the expected value of $V_{max} = 22$V. In addition, the maximum output voltage is around $20.2$V, which is exactly $1.2$V drops from 2 diodes in series.
+    \item \textbf{Step 3:} Replace the $10\micro$F capacitor with a $680\micro$F one and re-run the simulation, recognize the change in the result and explain.
+          % image goes here
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.7\textwidth]{graphics/lab2_9_c_rep.jpg}
+              \caption{The rectified voltage regulated with a $680\micro$F capacitor}
+              \label{fig:lab2_9_step3}
+          \end{figure}
+          \textbf{Comments:} The output voltage waveform is much better when compared to step 2. The ripples on the output voltage are significantly reduced. This is because the larger capacitor can store more charge, which helps to smooth out the voltage fluctuations. The maximum voltage between differential markers is around $21.7$V, which is closer to the expected value of $V_{max} = 22$V. And the output voltage is around $20.4$V.
+    \item \textbf{Step 4:} Add a zener diode as in Figure \ref{fig:lab2_9_step4} with the zener voltage properties set to 22 volts then simulate the circuit and comment or explain the result.
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.7\textwidth]{graphics/zener_added.jpg}
+              \caption{Rectified voltage regulated with a capacitor and a zener diode}
+              \label{fig:lab2_9_step4}
+          \end{figure}
+          \textbf{Simulation result:}
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.7\textwidth]{graphics/lab2_9_zener22.jpg}
+              \caption{The output voltage with a zener diode added}
+          \end{figure}
+          \vspace{-20pt}
+          \textbf{Comments:} The zener diode helps to regulate output voltage to $V_{zener}$ if the output voltage exceed $V_{zener} = 22V$; However, as the highest output voltage cap at around $20.4V$, according to the simulation result in step 3, the zener diode does not change anything in the output voltage waveform.
+    \item \textbf{Step 5:} Change the zener voltage properties of the zener diode to 20 volts and then re-run the simulation. Comment and explain any changes in the result.
+          \textbf{Simulation result:}
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.7\textwidth]{graphics/lab2_9_20v.jpg}
+              \caption{The output voltage with a zener diode of $V_{zener} = 20V$ added}
+          \end{figure}
+          \textbf{Comments:} As explain in step 4, now because the output voltage exceed $V_{zener} = 20V$, the zener diode starts to conduct in reverse bias and regulate the output voltage to around $20V$. This can be seen in the simulation result where the output voltage waveform is clamped at around $20V$.
+\end{itemize}
