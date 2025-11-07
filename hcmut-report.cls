@@ -72,7 +72,11 @@
   right=2cm,
   vmargin=1cm,
   includeheadfoot=true,
+<<<<<<< HEAD
   headheight=30pt
+=======
+  headheight=35pt
+>>>>>>> master
 }
 
 

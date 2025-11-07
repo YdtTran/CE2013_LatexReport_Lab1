@@ -1,0 +1,495 @@
+\section*{Exercise 1}
+\subsection*{Given Circuit and Parameters}
+Consider the circuit below consisting of a DC source $V_S = 5~\mathrm{V}$, a resistor $R_1$, and a practical diode model.
+The diode is modeled as an ideal diode in series with:
+\begin{itemize}
+    \item a constant forward voltage drop $V_F = 0.7~\mathrm{V}$, and
+    \item an internal resistance $R_{\text{int}} = 50~\Omega$.
+\end{itemize}
+
+\noindent
+The circuit is a simple series loop:
+\[
+V_S = I(R_1 + R_{\text{int}}) + V_F
+\]
+
+\noindent
+Rearranging gives:
+\[
+I = \frac{V_S - V_F}{R_1 + R_{\text{int}}}
+\]
+
+\noindent
+The voltage across the resistor and the diode is, respectively:
+\[
+V_{R_1} = I R_1, \qquad
+V_D = V_F + I R_{\text{int}}
+\]
+
+
+\subsection*{Case 1: \texorpdfstring{$R_1 = 220~\Omega$}{R1 = 220 ohm}}
+
+\[
+\begin{aligned}
+I &= \frac{5 - 0.7}{220 + 50} = \frac{4.3}{270} = 0.0159259259~\text{A} = 15.9259~\text{mA},\\[4pt]
+V_{R_1} &= I \times 220 = 3.5037~\text{V},\\[4pt]
+V_D &= 0.7 + I \times 50 = 0.7 + 0.7963 = 1.4963~\text{V}.
+\end{aligned}
+\]
+
+\[
+\boxed{
+I = 15.93~\text{mA}, \quad
+V_{R_1} = 3.50~\text{V}, \quad
+V_D = 1.50~\text{V}.
+}
+\]
+
+
+\subsection*{Case 2: \texorpdfstring{$R_1 = 1.5~\text{k}\Omega$}{R1 = 1.5 kohm}}
+
+\[
+\begin{aligned}
+I &= \frac{5 - 0.7}{1500 + 50} = \frac{4.3}{1550} = 0.00277419~\text{A} = 2.774~\text{mA},\\[4pt]
+V_{R_1} &= I \times 1500 = 4.1613~\text{V},\\[4pt]
+V_D &= 0.7 + I \times 50 = 0.7 + 0.1387 = 0.8387~\text{V}.
+\end{aligned}
+\]
+
+\[
+\boxed{
+I = 2.77~\text{mA}, \quad
+V_{R_1} = 4.16~\text{V}, \quad
+V_D = 0.84~\text{V}.
+}
+\]
+
+\newpage
+
+\subsection*{PSpice simulation result}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15cm]{Images/ex1_sima.png}
+\end{center}
+\caption{PSpice simulation result for Exercise 2($R_1=220\ \Omega$)}
+\label{fig:ex2sim}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15cm]{Images/ex1_simb.png}
+\end{center}
+\caption{PSpice simulation result for Exercise 2($R_1=1.5\ k\Omega$)}
+\label{fig:ex2sim}
+\end{figure}
+
+\subsection*{Comparison table}
+
+\begin{table}[h!]
+\centering
+\caption{Comparison between analytical (theory) and PSpice simulation results for diode circuit ($V_S = 5~\mathrm{V}$, $V_F = 0.7~\mathrm{V}$, $R_{\text{int}} = 50~\Omega$)}
+\label{tab:theory_vs_sim_side}
+\begin{tabular}{l|ccc|ccc}
+\toprule
+\multirow{2}{*}{\textbf{Case (R$_1$)}} 
+& \multicolumn{3}{c|}{\textbf{Theoretical Results}} 
+& \multicolumn{3}{c}{\textbf{PSpice Simulation Results}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+ & $I$ (mA) & $V_{R_1}$ (V) & $V_D$ (V)
+ & $I$ (mA) & $V_{R_1}$ (V) & $V_D$ (V) \\
+\midrule
+$220~\Omega$ 
+ & 15.93 & 3.504 & 1.496 
+ & 15.82 & 3.481 & 1.519 \\[3pt]
+$1.5~\text{k}\Omega$ 
+ & 2.774 & 4.161 & 0.839 
+ & 2.786 & 4.179 & 0.821 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\newpage
+
+\section*{Exercise 2}
+\subsection*{Circuit analysis}
+In this series circuit, we assume all three diodes \(D_1, D_2,\) and \(D_3\) are forward biased (ON), since the source \(V_1=\qty{10}{V}\) is connected in series with the anode of \(D_1\).
+
+\begin{itemize}
+    \item When a diode is ON it is replaced by a voltage source \(\mathbf{V_{ON}=\qty{0.7223}{V}}\) oriented in the direction of forward bias.
+    \item The current \(I\) is the same through all elements (series circuit).
+\end{itemize}
+
+Apply KVL around the loop (starting at the source \(V_1\), clockwise):
+\[
+V_1 - V_{D1} - V_{D2} - V_{D3} - V_{R1} = 0.
+\]
+Replace the diode drops with \(\mathbf{V_{ON}}\) and \(V_{R1}=I\cdot R_1\):
+\[
+V_1 - 3\cdot V_{ON} - I\cdot R_1 = 0.
+\]
+
+\subsection*{Current \(\mathbf{I}\)}
+Solve for \(I\):
+\[
+I\cdot R_1 = V_1 - 3\cdot V_{ON}
+\quad\Rightarrow\quad
+I = \frac{V_1 - 3\cdot V_{ON}}{R_1}.
+\]
+Substitute \(V_1=\qty{10}{V}\), \(V_{ON}=\qty{0.7223}{V}\), \(R_1=\qty{1}{k\Omega}=\qty{1000}{\Omega}\):
+\[
+I = \frac{10 - 3\cdot 0.7223}{1000} = \frac{7.8331}{1000}\ \text{A}
+= \mathbf{7.8331\ \text{mA}}.
+\]
+
+\subsection*{Diode voltages}
+All diodes are identical and forward biased:
+\[
+V_{D1}=V_{D2}=V_{D3}=V_{ON}=\mathbf{0.7223\ \text{V}}.
+\]
+
+\subsection*{PSpice simulation result}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15cm]{Images/ex2_sim.png}
+\end{center}
+\caption{PSpice simulation result for Exercise 2}
+\label{fig:ex2sim}
+\end{figure}
+
+\subsection*{Comparison table}
+\begin{table}[h!]
+\centering
+\caption{Comparison between Analytical and PSpice Simulation Results for the Diode Circuit}
+\label{tab:analytic_pspice_comparison}
+\begin{tabular}{l|c|c|c|c|c}
+\toprule
+\textbf{Method} & $\mathbf{V_{D1}\ (\text{V})}$ & $\mathbf{V_{D2}\ (\text{V})}$ & $\mathbf{V_{D3}\ (\text{V})}$ & $\mathbf{V_{R1}\ (\text{V})}$ & $\mathbf{I\ (\text{mA})}$ \\
+\midrule
+\textbf{Analytical Calculation} & 0.7223 & 0.7223 & 0.7223 & 7.8331 & 7.8331 \\
+\textbf{PSpice Simulation} & 0.709 & 0.709 & 0.709 & 0.710 & 7.872 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\section*{Exercise 3}
+
+\subsection*{Determining the state of diode \(D_3\)}
+Define node voltages:
+\[
+V_1 \equiv \text{voltage at diode top},\qquad
+V_2 \equiv \text{voltage at diode bottom}.
+\]
+Assume the voltage difference \(V_{12}=V_1-V_2\) were insufficient to forward bias \(D_3\). Using the simple divider estimates:
+\[
+V_{12}=\frac{R_2}{R_1+R_2}V_{\text{source}}-\frac{R_4}{R_3+R_4}V_{\text{source}}
+=\frac{8}{10}V_{\text{source}}-\frac{6}{10}V_{\text{source}}=\frac{1}{5}V_{\text{source}}.
+\]
+For \(V_{\text{source}}=10\ \text{V}\) this gives \(2\ \text{V} > 0.7\ \text{V}\), so the assumption is not valid. Therefore diode \(D_3\) is \textbf{forward biased (ON)} and is replaced by \(V_{\text{ON}}=\qty{0.7}{V}\):
+\[
+V_1 - V_2 = 0.7\ \text{V}. \quad\text{(Eq. 1)}
+\]
+
+Write KCL at node \(V_1\) (currents leaving node):
+\[
+\frac{V_1-10}{R_1}+\frac{V_1-0}{R_2}+I_D=0
+\quad\Longrightarrow\quad
+I_D = -\frac{V_1-10}{R_1}-\frac{V_1}{R_2}.
+\tag{1}
+\]
+
+Write KCL at node \(V_2\) (currents leaving node):
+\[
+\frac{V_2-10}{R_3}+\frac{V_2-0}{R_4}-I_D=0.
+\tag{2}
+\]
+
+Eliminate \(I_D\) by substituting (1) into (2). Also, use \(V_1=V_2+0.7\). After substitution we obtain one linear equation in \(V_2\); solving gives the numerical result (details below).
+
+\bigskip
+\textbf{Numeric solution:}
+
+Substitute the known resistor values and solve:
+
+\[
+V_2 = 6.78\ \mathrm{V},\qquad V_1 = V_2 + 0.7 = 7.48\ \mathrm{V}.
+\]
+
+Now compute the resistor currents (sign convention: current values given as magnitudes; directions implied by voltage drop from +10 to node or node to ground):
+
+\[
+I_{R1} = \frac{10 - V_1}{R_1}
+= \frac{10 - 7.48}{2000} = 1.259\times 10^{-3}\ \mathrm{A} = 1.26\ \mathrm{mA}.
+\]
+
+\[
+I_{R2} = \frac{V_1 - 0}{R_2}
+= \frac{7.48}{8000} = 0.935\times 10^{-3}\ \mathrm{A} = 0.935\ \mathrm{mA}.
+\]
+
+\[
+I_{R3} = \frac{10 - V_2}{R_3}
+= \frac{10 - 6.78}{4000} = 0.805\times 10^{-3}\ \mathrm{A} = 0.805\ \mathrm{mA}.
+\]
+
+\[
+I_{R4} = \frac{V_2 - 0}{R_4}
+= \frac{6.78}{6000} = 1.130\times 10^{-3}\ \mathrm{A} = 1.13\ \mathrm{mA}.
+\]
+
+Diode current (from node \(V_1\) into node \(V_2\)):
+\[
+I_D = -\frac{V_1-10}{R_1}-\frac{V_1}{R_2}
+\approx 0.325\times 10^{-3}\ \mathrm{A} = 0.325\ \mathrm{mA}.
+\]
+
+\bigskip
+\textbf{Final results (rounded):}
+\[
+\boxed{%
+\begin{aligned}
+V_1 &= 7.48\ \mathrm{V}, &\qquad V_2 &= 6.78\ \mathrm{V},\\
+I_{R1} &= 1.26\ \mathrm{mA}, &\qquad I_{R2} &= 0.935\ \mathrm{mA},\\
+I_{R3} &= 0.805\ \mathrm{mA}, &\qquad I_{R4} &= 1.13\ \mathrm{mA},\\
+I_D &= 0.325\ \mathrm{mA}\ (\text{from }V_1\to V_2).
+\end{aligned}
+}
+\]
+
+\subsection*{PSpice simulation results}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15cm]{Images/ex3_sima.png}
+\end{center}
+\caption{PSpice simulation result for Exercise 3 for when voltage source has 8V voltage difference}
+\label{fig:ex3sim}
+\end{figure}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15cm]{Images/ex3_simb.png}
+\end{center}
+\caption{PSpice simulation result for Exercise 3 for when voltage source has 12V voltage difference}
+\label{fig:ex3sim}
+\end{figure}
+\newpage
+\newpage
+
+\subsection*{Comparison: analytical vs. simulation}
+\begin{table}[h!]
+\centering
+\caption{Analytical results (practical diode $V_D=0.7\ \mathrm{V}$)}
+\label{tab:analytical_results}
+\begin{tabular}{l|c|c|c|c|c|c}
+\toprule
+\textbf{Source} & $I_{R1}$ & $I_{R2}$ & $I_{R3}$ & $I_{R4}$ & $V_A$ & $V_B$ \\
+\midrule
+$\mathbf{V = 8\ \text{V}}$  & $0.980\ \text{mA}$ & $0.755\ \text{mA}$ & $0.665\ \text{mA}$ & $0.890\ \text{mA}$ & $6.040\ \text{V}$ & $5.340\ \text{V}$ \\
+$\mathbf{V = 12\ \text{V}}$ & $1.540\ \text{mA}$ & $1.115\ \text{mA}$ & $0.945\ \text{mA}$ & $1.370\ \text{mA}$ & $8.920\ \text{V}$ & $8.220\ \text{V}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{PSpice simulation results}
+\label{tab:pspice_results}
+\begin{tabular}{l|c|c|c|c|c|c}
+\toprule
+\textbf{Source} & $I_{R1}$ & $I_{R2}$ & $I_{R3}$ & $I_{R4}$ & $V_A$ & $V_B$ \\
+\midrule
+$\mathbf{V = 8\ \text{V}}$  & 0.996mA & 0.751mA & 0.653mA & 0.898mA & 6.008V & 5.389V \\
+$\mathbf{V = 12\ \text{V}}$ & 1.553mA & 1.112mA & 0.935mA & 1.377mA & 8.894V & 8.260V \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\section*{Exercise 4}
+
+\subsection*{Circuit and Parameters}
+Given values:
+\[
+R_1 = 5.6~\text{k}\Omega, \quad R_2 = 3.3~\text{k}\Omega, \quad V_F = 0.7~\text{V}.
+\]
+Both diodes \(D_1\) and \(D_2\) are assumed to conduct in steady DC conditions.
+
+\subsection*{Theoretical Analysis}
+From the diode voltage drops:
+\[
+V_A = V_S - V_F, \qquad V_B = V_A - V_F = V_S - 2V_F.
+\]
+Currents:
+\[
+I_{R1} = \frac{V_B}{R_1}, \qquad I_{R2} = \frac{V_A - V_B}{R_2} = \frac{V_F}{R_2}.
+\]
+Since both diodes conduct, \(I_{D1} = I_{R1}\) and \(I_{D2} = I_{R1} - I_{R2}\).
+
+\paragraph*{Case 1: \(\mathbf{V_S = 12~\text{V}}\)}
+\[
+\begin{aligned}
+V_B &= 12 - 2(0.7) = 10.6~\text{V},\\
+V_A &= 10.6 + 0.7 = 11.3~\text{V},\\
+I_{R1} &= \frac{10.6}{5600} = 1.893~\text{mA},\\
+I_{R2} &= \frac{0.7}{3300} = 0.2121~\text{mA},\\
+I_{D2} &= 1.893 - 0.2121 = 1.681~\text{mA}.
+\end{aligned}
+\]
+
+\paragraph*{Case 2: \(\mathbf{V_S = 20~\text{V}}\)}
+\[
+\begin{aligned}
+V_B &= 20 - 1.4 = 18.6~\text{V},\\
+V_A &= 18.6 + 0.7 = 19.3~\text{V},\\
+I_{R1} &= \frac{18.6}{5600} = 3.321~\text{mA},\\
+I_{R2} &= 0.2121~\text{mA},\\
+I_{D2} &= 3.321 - 0.2121 = 3.109~\text{mA}.
+\end{aligned}
+\]
+
+\subsection*{Remarks}
+\begin{itemize}
+    \item Both diodes are forward-biased in both cases, clamping the DC level to a fixed offset of \(2V_F = 1.4~\text{V}\) below the source.
+    \item The current through \(R_2\) remains constant since it depends only on \(V_F\) and \(R_2\).
+\end{itemize}
+
+\subsection*{PSpice simulation results}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15cm]{Images/ex4_sima.png}
+\end{center}
+\caption{PSpice simulation result for Exercise 4 when $V=12\  \text{V}$}
+\label{fig:ex3sim}
+\end{figure}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15cm]{Images/ex4_simb.png}
+\end{center}
+\caption{PSpice simulation result for Exercise 4 when $V=20\  \text{V}$}
+\label{fig:ex3sim}
+\end{figure}
+\newpage
+
+\subsection*{Comparison Between Theory and Simulation}
+
+\begin{table}[h!]
+\centering
+\caption{Comparison of Theory and PSpice simulation}
+\label{tab:ir_compare}
+\begin{tabular}{l
+  |cccc
+  |cccc}
+\toprule
+\multirow{2}{*}{\textbf{Case}} 
+ & \multicolumn{4}{c|}{\textbf{Theory}} 
+ & \multicolumn{4}{c}{\textbf{PSpice}} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+ & $I_{R1}$ (mA) & $I_{R2}$ (mA) & $I_{D2}$ (mA) & $V_{R2}$ (V)
+ & $I_{R1}$ (mA) & $I_{R2}$ (mA) & $I_{D2}$ (mA) & $V_{R2}$ (V) \\
+\midrule
+$V_S = 12\ \mathrm{V}$ 
+ & $1.893$ & $0.2121$ & $1.681$ & $0.7000$
+ & $1.903$ & $0.2027$ & $1.701$ & $0.67$ \\[4pt]
+$V_S = 20\ \mathrm{V}$ 
+ & $3.321$ & $0.2121$ & $3.109$ & $0.7000$
+ & $3.327$ & $0.2075$ & $3.119$ & $0.68$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\paragraph*{Conclusion.}
+From the comparison table, it can be observed that the theoretical and PSpice simulation results are in close agreement, confirming the validity of the analytical calculations. The small differences in current and voltage values are mainly due to the diode’s nonlinear behavior and the limited precision of the simulation model. 
+
+When the supply voltage increases from $12\,\text{V}$ to $20\,\text{V}$, all currents in the circuit ($I_{R1}$, $I_{R2}$, and $I_{D2}$) increase proportionally, while the voltage across $R_2$ ($V_{R2}$) remains approximately equal to the diode forward voltage of $0.7\,\text{V}$. This demonstrates the expected clamping behavior of the circuit, where the diode maintains a nearly constant voltage drop regardless of the source voltage.
+
+\newpage
+\section*{Exercise 5}
+
+\textbf{Given:} RL = $1\ \mathrm{k\Omega}$; diode forward drop $V_F = 0.7\ \mathrm{V}$.
+
+Denote:
+\[
+V_{RL} \equiv \text{voltage at the output node (top of }R_L\text{)},\quad
+I_{R_L} = \frac{V_{RL}}{R_L}.
+\]
+
+A diode from a supply $V_S$ to the node clamps the node (if it conducts) to
+\[
+V_{RL} = V_S - V_F.
+\]
+
+We examine three supply cases:
+
+\subsection*{Case A: only 5 V connected (9 V absent)}
+If only the 5 V supply is present, D3 can conduct and D4 is open (no 9 V):
+\[
+V_{RL} = 5.0 - 0.7 = 4.3\ \mathrm{V}.
+\]
+Thus
+\[
+I_{R_L} = \frac{4.3}{1000} = 4.300\times 10^{-3}\ \mathrm{A} = 4.300\ \mathrm{mA}.
+\]
+Currents through diodes:
+\[
+I_{D3} = I_{R_L} = 4.300\ \mathrm{mA},\qquad I_{D4} = 0.
+\]
+
+\subsection*{Case B: only 9 V connected (5 V absent)}
+If only the 9 V supply is present, D4 conducts and D3 is open:
+\[
+V_{RL} = 9.0 - 0.7 = 8.3\ \mathrm{V},
+\]
+\[
+I_{R_L} = \frac{8.3}{1000} = 8.300\ \mathrm{mA},
+\]
+\[
+I_{D4} = I_{R_L} = 8.300\ \mathrm{mA},\qquad I_{D3} = 0.
+\]
+
+\subsection*{Case C: both 5 V and 9 V connected}
+Both diodes could potentially conduct, but the higher supply wins:
+
+- D4 (9 V) imposes \(V_{RL} \approx 9.0 - 0.7 = 8.3\ \mathrm{V}\).
+
+- With \(V_{RL}=8.3\ \mathrm{V}\), the 5 V anode (5.0 V) is lower than node (8.3 V), so D3 is reverse-biased and OFF.
+
+Therefore
+\[
+V_{RL} = 8.3\ \mathrm{V},\quad I_{R_L} = 8.300\ \mathrm{mA},\quad I_{D4} = 8.300\ \mathrm{mA},\quad I_{D3} = 0.
+\]
+
+\newpage
+
+\subsection*{PSpice simulation result}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15cm]{Images/ex5_sim.png}
+\end{center}
+\caption{PSpice simulation result for Exercise 5}
+\label{fig:ex2sim}
+\end{figure}
+
+\bigskip
+\noindent\textbf{Summary table (Theory vs Simulation):}
+
+\begin{table}[h!]
+\centering
+\caption{Comparison of Theory and PSpice simulation}
+\label{tab:power_switch_compare}
+\begin{tabular}{cccc|cccc}
+\toprule
+\multicolumn{4}{c|}{\textbf{Theory}} 
+& \multicolumn{4}{c}{\textbf{PSpice}} \\
+\cmidrule(lr){1-4}\cmidrule(lr){5-8}
+$I_{D3}$ (mA) & $I_{D4}$ (mA) & $I_{R_L}$ (mA) & $V_{R_L}$ (V)
+& $I_{D3}$ (pA) & $I_{D4}$ (mA) & $I_{R_L}$ (mA) & $V_{R_L}$ (V) \\
+\midrule
+$0.000$ & $8.300$ & $8.300$ & $8.300$
+& $3.297$ & $8.289$ & $8.289$ & $8.289$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+

@@ -1,0 +1,109 @@
+\documentclass[final]{hcmut-report}
+\usepackage{codespace}
+
+% Draft watermark
+% https://github.com/callegar/LaTeX-draftwatermark
+
+% Caption and subfigures
+\usepackage{subcaption}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries\raggedright}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\raggedright} % <— tương tự
+  {\thesubsection}{1em}{}
+% Encodings
+\usepackage{gensymb,textcomp}
+
+% Better tables
+% Wide tables go to https://tex.stackexchange.com/q/332902
+\usepackage{array,longtable,multicol,multirow,siunitx,tabularx}
+
+% Better enum
+\usepackage{enumitem}
+
+% Graphics
+\usepackage{caption,float}
+
+% Add options for figures, like max width, framing, etc.
+\usepackage[export]{adjustbox}
+
+% References
+% Use \Cref{} instead of \ref{}
+\usepackage[nameinlink]{cleveref}
+
+% FOR DEMONSTRATION PURPOSES, REMOVE IN PRODUCTION
+\usepackage{mwe}
+
+% Sub-preambles
+% https://github.com/MartinScharrer/standalone
+
+% Configurations
+\coursename{Electronic Device component (CO2104)}
+\reporttype{Lab report}
+\title{Lab 1 report}
+\advisor{& Phạm Công Thái &}
+\stuname{%
+  & Phạm Minh Đức & 2414106 \\
+  & Trần Đình Ý & 2414100 \\
+}
+
+% Allow page breaks inside align* environment
+%\allowdisplaybreaks{}
+
+% Makes a lot of things blue, avoid at all costs
+%\everymath{\color{blue}}
+
+% Set depth of numbering for counters
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+
+% Rename some sections
+%\AtBeginDocument{\renewcommand*{\contentsname}{Contents}}
+%\AtBeginDocument{\renewcommand*{\refname}{References}}
+%\AtBeginDocument{\renewcommand*{\bibname}{References}}
+
+% Custom commands
+%\newcommand*\mean[1]{\bar{#1}}
+
+\begin{document}
+\coverpage%
+
+%\section*{Member list \& Workload}
+%\newcounter{memberrowno}
+%\setcounter{memberrowno}{0}
+%\begin{center}
+%  \begin{tabular}{>{\stepcounter{memberrowno}\thememberrowno}llcc}
+%    \toprule
+%    \multicolumn{1}{c}{\textbf{No.}} & \textbf{Full name} & \textbf{Student ID} & \textbf{Contribution} \\
+%    \midrule
+%                                     & h                  & xxxxxxx             & 100\%                       \\
+%         latexminted                             & h                  & xxxxxxx             & 100\%                       \\
+%    \bottomrule
+%  \end{tabular}
+%\end{center}
+%\clearpage
+
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings{}
+
+\clearpage
+
+\section{Report of lab 1}
+In lab 1, there are 10 problems to be solved. In each problem, we need to solve it first by hand and then verify the result by using simulation tools. In this report, we will use PSpice for TI to verify our results.
+\input{chapters/lab1/6_1.tex}
+\newpage
+\input{chapters/lab1/6_2.tex}
+\newpage
+\input{chapters/lab1/6_3.tex}
+\newpage
+\input{chapters/lab1/6_4.tex}
+\newpage
+\input{chapters/lab1/6_5.tex}
+\newpage
+\input{chapters/lab1/6-10.tex}
+\bibliographystyle{plain}
+\bibliography{refs/example.bib}
+\nocite{*}
+
+\end{document}
